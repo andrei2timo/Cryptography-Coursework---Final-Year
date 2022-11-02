@@ -30,18 +30,19 @@ public class BruteForce_letters_digits {
     public static void main(String[] args) throws NoSuchAlgorithmException, UnsupportedEncodingException, IOException {
         BruteForce_letters_digits main = new BruteForce_letters_digits();
         
-        String[] to_crack = {"c2543fff3bfa6f144c2f06a7de6cd10c0b650cae",  // this   // All targets  0.0939 minutes
-                             "b47f363e2b430c0647f14deea3eced9b0ef300ce",  // is                     0.00113 min
-                             "e74295bfc2ed0b52d40073e8ebad555100df1380",  // very                   0.0555 min
-                             "0f7d0d088b6ea936fb25b477722d734706fe8b40",  // simple                 5.1912 min
-                             "77cfc481d3e76b543daf39e7f9bf86be2e664959",  // fail7                  19.7574 min
-                             "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1",  // 5you5                  0.6886 min
-                             "4bcc3a95bdd9a11b28883290b03086e82af90212",  // 3crack                 2.8758 min
-                             "7302ba343c5ef19004df7489794a0adaee68d285",  // 1you1                  1.6916 min
-                             "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4",  // 00if00                 15.5418 min
-                             "6ef80072f39071d4118a6e7890e209d4dd07e504",  // cannot                 23.8227 min
-                             "02285af8f969dc5c7b12be72fbce858997afe80a",  // 4this4                 6.6713 min
-                             "57864da96344366865dd7cade69467d811a7961b"}; // 6will                  1.4959 min     All together: 24min
+        String[] to_crack = {"c2543fff3bfa6f144c2f06a7de6cd10c0b650cae",  // this   // All targets  0.0403 minutes
+                             "b47f363e2b430c0647f14deea3eced9b0ef300ce",  // is                     0.0012 min
+                             "e74295bfc2ed0b52d40073e8ebad555100df1380",  // very                   0.1562 min
+                             "0f7d0d088b6ea936fb25b477722d734706fe8b40",  // simple                 16.0397 min
+                             "77cfc481d3e76b543daf39e7f9bf86be2e664959",  // fail7                  0.1206 min
+                             "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1",  // 5you5                  2.1039 min 
+                             "4bcc3a95bdd9a11b28883290b03086e82af90212",  // 3crack                 56.2198 min
+                             "7302ba343c5ef19004df7489794a0adaee68d285",  // 1you1                  5.719 min 
+                             "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4",  // 00if00                 62.1882 min
+                             "6ef80072f39071d4118a6e7890e209d4dd07e504",  // cannot                 19.2195 min
+                             "02285af8f969dc5c7b12be72fbce858997afe80a",  // 4this4                 67.705 min
+                             "57864da96344366865dd7cade69467d811a7961b"}; // 6will                  11.2031 min    All together: 240.7165min
+                                                                                                               // approx: 4 hrs 0 min 42 sec
         
         
         List<String> t = Arrays.asList(to_crack);  // Add hashes to a list for comparing generated strings
