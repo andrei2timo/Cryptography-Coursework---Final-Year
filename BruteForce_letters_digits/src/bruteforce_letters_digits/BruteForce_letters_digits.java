@@ -84,7 +84,7 @@ public class BruteForce_letters_digits {
     }
     
     public void writeToFile(String password) throws IOException{
-        File file = new File("C:\\Users\\suvit\\Desktop\\3rd Year\\Cryptography\\Java-Projects-main\\file1.txt");  // Record the cracked passwords
+        File file = new File("C:\\Users\\andrei\\Desktop\\3rd Year\\Cryptography\\Java-Projects-main\\file1.txt");  // Record the cracked passwords
         
         FileWriter fr = new FileWriter(file, true);
         fr.write(password);
