@@ -122,7 +122,7 @@ public class BruteForce_BCH_codes {
     }
     
     public void writeToFile(String password) throws IOException{
-        File file = new File("C:\\Users\\suvit\\Desktop\\3rd Year\\Cryptography\\file.txt");
+        File file = new File("C:\\Users\\andrei\\Desktop\\3rd Year\\Cryptography\\file.txt");
         
         FileWriter fr = new FileWriter(file, true);  // Used for recording passwords and cracking times to file
         fr.write(password);
