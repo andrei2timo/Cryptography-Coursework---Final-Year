@@ -490,8 +490,8 @@ public class StreamCipher extends javax.swing.JFrame {
         //System.out.println("The key in binary: " + variable);
         Key = binaryToHex(variable);
         //Key = "a73e80e2b563";
-        //System.out.println("The key in hex: " + Key);
         
+        System.out.println("The generated key is: " + Key);
         //Set the text of the field to the found Key
         jTextField2.setText(Key);
         
