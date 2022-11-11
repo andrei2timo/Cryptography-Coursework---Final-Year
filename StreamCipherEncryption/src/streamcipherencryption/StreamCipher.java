@@ -398,6 +398,14 @@ public class StreamCipher extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(StreamCipher.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Check if the length could be a single character or a string with length <5
+        if(message1.length()<5)
+        {   
+            String msg=String.valueOf(message1);
+            for(int k=0;k<15;k++)
+                message1 += msg;
+        }
         //Check if the length of the string (from file) is is less than 10 characters
         if(message1.length()<10)
         {    
@@ -429,7 +437,7 @@ public class StreamCipher extends javax.swing.JFrame {
         //System.out.println(message2);
         
         //Display the converted message into hex on the console
-        //System.out.println(Long.toHexString(result));
+        //System.out.println("The generated Key:" + Long.toHexString(result));
         jTextField4.setText(message2);
         
         //The encrypted text displayed and generating the cipher-text
@@ -490,7 +498,7 @@ public class StreamCipher extends javax.swing.JFrame {
         //System.out.println("The key in binary: " + variable);
         Key = binaryToHex(variable);
         //Key = "a73e80e2b563";
-        
+
         System.out.println("The generated key is: " + Key);
         //Set the text of the field to the found Key
         jTextField2.setText(Key);
