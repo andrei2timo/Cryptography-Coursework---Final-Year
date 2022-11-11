@@ -29,19 +29,7 @@ public class BruteForce_BCH_codes {
         BruteForce_BCH_codes main = new BruteForce_BCH_codes();
         //ArrayList target = new ArrayList();
                              
-        String[] to_crack = {"c2543fff3bfa6f144c2f06a7de6cd10c0b650cae",
-                             "b47f363e2b430c0647f14deea3eced9b0ef300ce",
-                             "e74295bfc2ed0b52d40073e8ebad555100df1380", 
-                             "0f7d0d088b6ea936fb25b477722d734706fe8b40",
-                             "77cfc481d3e76b543daf39e7f9bf86be2e664959",
-                             "5cc48a1da13ad8cef1f5fad70ead8362aabc68a1",
-                             "4bcc3a95bdd9a11b28883290b03086e82af90212",
-                             "7302ba343c5ef19004df7489794a0adaee68d285",
-                             "21e7133508c40bbdf2be8a7bdc35b7de0b618ae4",
-                             "6ef80072f39071d4118a6e7890e209d4dd07e504",
-                             "02285af8f969dc5c7b12be72fbce858997afe80a",
-                             "57864da96344366865dd7cade69467d811a7961b",
-                             "902608824fae2a1918d54d569d20819a4288a4e4",     // 0000118435      0.1508 seconds
+        String[] to_crack = {"902608824fae2a1918d54d569d20819a4288a4e4",     // 0000118435      0.1508 seconds
                              "88d0b34055b79644196fce25f876bc1a5ef654d3",     // 1111110565      1.6115 seconds
                              "5b8f495b7f02b62eb228c5dbece7c2f81b60b9a3"};    // 8888880747      2.90912 seconds   All together: 3 seconds
         
@@ -122,7 +110,7 @@ public class BruteForce_BCH_codes {
     }
     
     public void writeToFile(String password) throws IOException{
-        File file = new File("C:\\Users\\andrei\\Desktop\\3rd Year\\Cryptography\\file.txt");
+        File file = new File("C:\\Users\\suvit\\Desktop\\3rd Year\\Cryptography\\file.txt");
         
         FileWriter fr = new FileWriter(file, true);  // Used for recording passwords and cracking times to file
         fr.write(password);
