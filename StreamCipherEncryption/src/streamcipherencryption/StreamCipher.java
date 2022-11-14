@@ -49,6 +49,9 @@ public class StreamCipher extends javax.swing.JFrame {
         jTextPane1 = new javax.swing.JTextPane();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        jTextPane2 = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -91,6 +94,10 @@ public class StreamCipher extends javax.swing.JFrame {
             }
         });
 
+        jLabel6.setText("Introduce message1:");
+
+        jScrollPane3.setViewportView(jTextPane2);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -98,12 +105,12 @@ public class StreamCipher extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(18, 18, 18)
                         .addComponent(jButton2))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel2)
@@ -123,8 +130,10 @@ public class StreamCipher extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3)))
-                .addContainerGap(65, Short.MAX_VALUE))
+                        .addComponent(jButton3))
+                    .addComponent(jLabel6)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -150,11 +159,15 @@ public class StreamCipher extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel5)
                 .addGap(18, 18, 18)
+                .addComponent(jLabel6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -332,18 +345,28 @@ public class StreamCipher extends javax.swing.JFrame {
     public static String Hide_Message(String Original_Message, String Encrypted_Message)
     {   
         //add fullstop at the end of original message
-        Original_Message += ".";
-        Random rand = new Random(); //instance of random class
-        //Convert secret message to form of "." + ","
-        for(int i=0;i<Encrypted_Message.length();i++)
+        for(int j=1;j<Original_Message.length();j++)
+             if(Original_Message.charAt(j) == '.' && (Original_Message.charAt(j-1) >= 'a' && Original_Message.charAt(j-1) <= 'z'))
+                  Original_Message = Original_Message.substring(0,j) + '.' + Original_Message.substring(j);
+        
+        //Convert secret message to form of single white spaces and double white spaces
+        for(int i=1;i<Encrypted_Message.length();i++)
         {   
-            int int_random = rand.nextInt(Original_Message.length());
-            // . indicate "0"
-            if(Encrypted_Message.charAt(i) == '0')
-                Original_Message = Original_Message.substring(0,int_random) + '.' + Original_Message.substring(int_random);  
-            // white space indicate "1"
-            else if(Encrypted_Message.charAt(i) == '1')
-                Original_Message = Original_Message.substring(0,int_random) + ' ' + Original_Message.substring(int_random); 
+            for(int j=0;j<Original_Message.length()-2;j++)
+            {   
+                //check if at position j+1 we have a space and the previous position (j) we have a character from 'a' - 'z' range
+                if(Original_Message.charAt(j+1) == ' ' && (Original_Message.charAt(j) >= 'a' && Original_Message.charAt(j) <= 'z') &&
+                  (Original_Message.charAt(j+2) >= 'A' && Original_Message.charAt(j+2) <= 'Z' || 
+                   Original_Message.charAt(j+2) >= 'a' && Original_Message.charAt(j+2) <= 'z'))
+                {
+                    if(Encrypted_Message.charAt(i) == '0')//single white space for 0's
+                    {
+                        Original_Message = Original_Message.substring(0,j+1) + ' ' + Original_Message.substring(j+1);
+                    }
+                    else if(Encrypted_Message.charAt(i) == '1')//double white spaces for 1's
+                        Original_Message = Original_Message.substring(0,j+1) + ' ' + ' ' + Original_Message.substring(j+1); 
+                }
+            }
         }      
         return Original_Message;
     }
@@ -388,24 +411,12 @@ public class StreamCipher extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+        jLabel2.setText("The message in hex is:");
+        jLabel4.setText("The message after encryption is:");
         //Read the message1 from data.txt file
-        Path fileName = Path.of("C:\\Users\\suvit\\Desktop\\3rd Year\\Cryptography\\Week6\\StreamCipherEncryption\\src\\streamcipherencryption\\data.txt");
-        try {
-            // Now calling Files.readString() method to
-            // read the file
-            message1 = Files.readString(fileName);
-        } catch (IOException ex) {
-            Logger.getLogger(StreamCipher.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        //Check if the length could be a single character or a string with length <5
-        if(message1.length()<5)
-        {   
-            String msg=String.valueOf(message1);
-            for(int k=0;k<15;k++)
-                message1 += msg;
-        }
+        message1 = jTextPane2.getText();
+        
         //Check if the length of the string (from file) is is less than 10 characters
         if(message1.length()<10)
         {    
@@ -482,10 +493,9 @@ public class StreamCipher extends javax.swing.JFrame {
         p1=generateRandomPrime();
         p2=generateRandomPrime();
         //Firstly, initialise the seed with a random number between 1 and 10
-        seed=getRandomInRange(1,10);
+        seed=getRandomInRange(1,30);
         while(GCD(seed,p1*p2)!=1)//While the seed and p1*p2 are not co-prime
-            seed=getRandomInRange(1,10);//generate a new seed
-        
+            seed=getRandomInRange(1,100);//generate a new seed      
 
         //Display on the screen p1,p2 and seed
         System.out.println("Seed=" + seed + " p1=" + p1+" and p2="+p2);
@@ -550,11 +560,14 @@ public class StreamCipher extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JTextPane jTextPane2;
     // End of variables declaration//GEN-END:variables
 }
