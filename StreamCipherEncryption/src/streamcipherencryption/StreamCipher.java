@@ -413,6 +413,7 @@ public class StreamCipher extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         jLabel2.setText("The message in hex is:");
         jLabel4.setText("The message after encryption is:");
+        jLabel5.setText("Original message with hidden message:");
         //Read the message1 from data.txt file
         
         message1 = jTextPane2.getText();
@@ -498,7 +499,7 @@ public class StreamCipher extends javax.swing.JFrame {
             seed=getRandomInRange(1,100);//generate a new seed      
 
         //Display on the screen p1,p2 and seed
-        System.out.println("Seed=" + seed + " p1=" + p1+" and p2="+p2);
+        //System.out.println("Seed=" + seed + " p1=" + p1+" and p2="+p2);
         
         //Create and generate the array which stores the parity determined by Blum Blum Shub Generator
         int[] randomNums = new int[48];
@@ -509,7 +510,7 @@ public class StreamCipher extends javax.swing.JFrame {
         Key = binaryToHex(variable);
         //Key = "a73e80e2b563";
 
-        System.out.println("The generated key is: " + Key);
+        //System.out.println("The generated key is: " + Key);
         //Set the text of the field to the found Key
         jTextField2.setText(Key);
         
