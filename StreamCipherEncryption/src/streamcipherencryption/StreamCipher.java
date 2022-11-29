@@ -133,7 +133,7 @@ public class StreamCipher extends javax.swing.JFrame {
                         .addComponent(jButton3))
                     .addComponent(jLabel6)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(46, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -350,20 +350,18 @@ public class StreamCipher extends javax.swing.JFrame {
                   Original_Message = Original_Message.substring(0,j) + '.' + Original_Message.substring(j);
         
         //Convert secret message to form of single white spaces and double white spaces
-        for(int i=1;i<Encrypted_Message.length();i++)
+        for(int j=0;j<Original_Message.length()-1;j++)
         {   
-            for(int j=0;j<Original_Message.length()-2;j++)
+            for(int i=0;i<Encrypted_Message.length();i++)
             {   
-                //check if at position j+1 we have a space and the previous position (j) we have a character from 'a' - 'z' range
+                //check if at position j+1 we have a space and the previous and next positions (j and j+2) we have a character from 'a' - 'z' range
                 if(Original_Message.charAt(j+1) == ' ' && (Original_Message.charAt(j) >= 'a' && Original_Message.charAt(j) <= 'z') &&
                   (Original_Message.charAt(j+2) >= 'A' && Original_Message.charAt(j+2) <= 'Z' || 
                    Original_Message.charAt(j+2) >= 'a' && Original_Message.charAt(j+2) <= 'z'))
                 {
                     if(Encrypted_Message.charAt(i) == '0')//single white space for 0's
-                    {
                         Original_Message = Original_Message.substring(0,j+1) + ' ' + Original_Message.substring(j+1);
-                    }
-                    else if(Encrypted_Message.charAt(i) == '1')//double white spaces for 1's
+                    if(Encrypted_Message.charAt(i) == '1')//double white spaces for 1's
                         Original_Message = Original_Message.substring(0,j+1) + ' ' + ' ' + Original_Message.substring(j+1); 
                 }
             }
@@ -419,12 +417,12 @@ public class StreamCipher extends javax.swing.JFrame {
         message1 = jTextPane2.getText();
         
         //Check if the length of the string (from file) is is less than 10 characters
-        if(message1.length()<10)
+        if(message1.length()<20)
         {    
             //Make a copy of the original text from the text file
             String msg=String.valueOf(message1);
             //We duplicate the text 3 times
-            for(int k=0;k<3;k++)
+            for(int k=0;k<14;k++)
             {
                 message1 += " ";
                 message1 += msg;
