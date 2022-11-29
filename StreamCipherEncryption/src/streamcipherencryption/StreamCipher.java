@@ -5,6 +5,7 @@
 package streamcipherencryption;
 
 import java.io.IOException;
+import java.math.BigInteger;
 import java.util.Random;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -94,7 +95,7 @@ public class StreamCipher extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("Introduce message1:");
+        jLabel6.setText("Introduce message1 below:");
 
         jScrollPane3.setViewportView(jTextPane2);
 
@@ -105,69 +106,73 @@ public class StreamCipher extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(29, 29, 29)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 546, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton3))
-                    .addComponent(jLabel6)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(24, Short.MAX_VALUE))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField2)))
+                                .addGap(30, 30, 30)
+                                .addComponent(jButton3)
+                                .addGap(56, 56, 56)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jButton2)
+                                    .addComponent(jButton1)))
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6))
+                        .addContainerGap(17, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(6, 6, 6)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(jButton3)
                     .addComponent(jButton2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -278,13 +283,17 @@ public class StreamCipher extends javax.swing.JFrame {
     
     //---------------------------------------------------------------------------------------------------------------
     //Method XOR - helps to Encrypt/Decrypt the Data
-    public static long XOR(String Message, String Key)
+    public static BigInteger XOR(String Message, String Key)
     {   
         //Convert the String to a long number
-        long a = Long.parseLong(Message, 16);
-        long b = Long.parseLong(Key,16);
+        //long a = Long.parseLong(Message, 16);
+        //long b = Long.parseLong(Key,16);
         //Perform and return XOR results as long number
-        return a ^ b;
+        //return a ^ b;
+        BigInteger message2_converted = new BigInteger(Message, 16);
+        BigInteger Key_converted = new BigInteger(Key, 16);
+        BigInteger result = message2_converted.xor(Key_converted);
+        return result;
     }
     
     //---------------------------------------------------------------------------------------------------------------
@@ -402,7 +411,9 @@ public class StreamCipher extends javax.swing.JFrame {
         return binary;
     }
     //---------------------------------------------------------------------------------------------------------------
-    
+    public static String toBinary(String s) {
+        return new BigInteger(s, 16).toString(2);
+    }
     
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
 
@@ -428,55 +439,64 @@ public class StreamCipher extends javax.swing.JFrame {
                 message1 += msg;
             }
         }
-        // Printing the string from .txt file
-        //System.out.println(message1);
         //Get the message2 from the TextField
         message2 = jTextField1.getText();
-        //Check if the message length is not greater than 8
-        if(message2.length()>=9)
-            jTextField1.setText("String too long! Try again!");
         
-        //System.out.println(message2);
-        
+        //Convert the message2 from String to Hex
         message2 = convertStringToHex(message2);
-
+        
+        //Display the message and the Key on the console (in Hex)
+        //System.out.println("message is:" + message2);
+        //System.out.println("Key is:" + Key);
+        
         //Encrypt the message using the key
-        long result = XOR(message2,Key);
-        jTextField3.setText(Long.toHexString(result));
-       
+        BigInteger XOR_result = XOR(message2,Key);
+        //Display the XOR operation on the console
+        //System.out.println(message2 + "^" + Key + "=" + XOR_result);
+        
+        //Convert the bigInteger to String and assign the value to the text field
+        String XOR_result_converted = XOR_result.toString(16); 
+        //System.out.println(XOR_result_converted);
+        jTextField3.setText(XOR_result_converted);
         //System.out.println(message2);
         
         //Display the converted message into hex on the console
-        //System.out.println("The generated Key:" + Long.toHexString(result));
         jTextField4.setText(message2);
         
+        //System.out.println(XOR_result_converted.getClass().getName());
+        //System.out.println(toBinary(XOR_result_converted));
         //The encrypted text displayed and generating the cipher-text
-        jTextPane1.setText(Hide_Message(message1,HexToBinary(result)));
-        //System.out.println(Hide_Message(message1,HexToBinary(result)));
+        jTextPane1.setText(Hide_Message(message1,toBinary(XOR_result_converted)));
+        //System.out.println(Hide_Message(message1,toBinary(XOR_result_converted)));
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String CipherText = jTextPane1.getText();
         //System.out.println(CipherText);
-        
         jLabel2.setText("");
         jLabel2.setText("The Key is: ");
 
         jTextField4.setText("");
         jTextField4.setText(Key);
         
-        long result = XOR(message2,Key);
-        //System.out.println(Decrypt(Hide_Message(message1,HexToBinary(result)),message1));
+        //XOR between original message 2 and the key
+        BigInteger result = XOR(message2,Key);
+        //Convert the bigInteger to String and assign the value to the text field
         
-        long decryption_message2 = XOR(Long.toHexString(result),Key);
+        //Decrypt the hidden message - and get message2
+        String XOR_result_converted = result.toString(16);
+        BigInteger decryption_message2 = XOR(XOR_result_converted,Key);
+        //Convert message2 (from BigInteger) to Hex
+        String message2_decrypted = decryption_message2.toString(16); 
+
         jLabel4.setText("");
         jLabel4.setText("The decrypted message is: ");
-        
-        String ForDecryption = Long.toHexString(decryption_message2);
+        //System.out.println(message2_decrypted);
         
         jTextField3.setText("");
-        jTextField3.setText(convertHexToString(ForDecryption));
+        //Assign the converted value from hex to String to the text field
+        jTextField3.setText(convertHexToString(message2_decrypted));
         
         //System.out.println(message1);
         jLabel5.setText("");
@@ -500,9 +520,9 @@ public class StreamCipher extends javax.swing.JFrame {
         //System.out.println("Seed=" + seed + " p1=" + p1+" and p2="+p2);
         
         //Create and generate the array which stores the parity determined by Blum Blum Shub Generator
-        int[] randomNums = new int[48];
+        int[] randomNums = new int[60];
         //Call the Blum Blum Shub method and store the result into variable 
-        String variable = blumblum_shub(seed, p1,p2, randomNums, 48);
+        String variable = blumblum_shub(seed, p1,p2, randomNums, 60);
         
         //System.out.println("The key in binary: " + variable);
         Key = binaryToHex(variable);
