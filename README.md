@@ -3,4 +3,4 @@ Projects written in Java programming language for UFCFT4-15-3	CRYPTOGRAPHY modul
 
 Brute-force BCH codes, Brute-force letters & digits, and Rainbow Table files use added JAR for commons-lang3-3.12.0. BCH encode and decode file uses added JAR for swing-layout-1.0.2.
 
-Demo Video for the Stream Cipher application: https://youtu.be/ktGM3YEEYiU
+Demo Video for the Stream Cipher application: https://youtu.be/JPAa_-8pfIs
