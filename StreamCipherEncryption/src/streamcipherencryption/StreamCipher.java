@@ -11,6 +11,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import java.util.*;
+import java.util.function.*;
+import java.util.stream.*;
 /**
  *
  * @author Andrei Timo
@@ -21,12 +25,12 @@ public class StreamCipher extends javax.swing.JFrame {
     String Key = "";
     String message2;
     String message1="";
-    //int seed,a,b,p;//To generate the key using PRG
+    boolean CheckLength = false;
+    //To generate the key using PRG
     int seed,p1,p2;
     public StreamCipher() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -285,11 +289,6 @@ public class StreamCipher extends javax.swing.JFrame {
     //Method XOR - helps to Encrypt/Decrypt the Data
     public static BigInteger XOR(String Message, String Key)
     {   
-        //Convert the String to a long number
-        //long a = Long.parseLong(Message, 16);
-        //long b = Long.parseLong(Key,16);
-        //Perform and return XOR results as long number
-        //return a ^ b;
         BigInteger message2_converted = new BigInteger(Message, 16);
         BigInteger Key_converted = new BigInteger(Key, 16);
         BigInteger result = message2_converted.xor(Key_converted);
@@ -326,12 +325,7 @@ public class StreamCipher extends javax.swing.JFrame {
     //Method binaryToHex - converts a binary string to hex
     public static String binaryToHex(String str)
     {
-       long myLong = Long.parseLong(str,2);//Convert the string to decimal
-       //System.out.println(myLong);
-       //Convert the decimal number into Hex
-       String myHex = Long.toHexString( Long.parseLong(str,2));
-       //System.out.println(myHex);
-       return myHex;
+       return new BigInteger(str, 2).toString(16);
     }
     
     //---------------------------------------------------------------------------------------------------------------
@@ -410,11 +404,21 @@ public class StreamCipher extends javax.swing.JFrame {
         message1=String.valueOf(Encrypted_Message);
         return binary;
     }
+    
     //---------------------------------------------------------------------------------------------------------------
+    //Method removeDuplicates - remove duplicates words from a String
+    public static String removeDuplicates(String str)
+    {   
+        str = Arrays.stream(str.split(" ")).distinct().collect(Collectors.joining(" "));
+        return str;
+    }
+    
+    //---------------------------------------------------------------------------------------------------------------
+    //Method toBinary - converts a hex string to binary
     public static String toBinary(String s) {
         return new BigInteger(s, 16).toString(2);
     }
-    
+    //---------------------------------------------------------------------------------------------------------------
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
 
     }//GEN-LAST:event_jTextField1ActionPerformed
@@ -423,16 +427,16 @@ public class StreamCipher extends javax.swing.JFrame {
         jLabel2.setText("The message in hex is:");
         jLabel4.setText("The message after encryption is:");
         jLabel5.setText("Original message with hidden message:");
-        //Read the message1 from data.txt file
-        
+        //get message1 string from the text pane
         message1 = jTextPane2.getText();
         
-        //Check if the length of the string (from file) is is less than 10 characters
+        //Check if the length of the string (from file) is less than 20 characters
         if(message1.length()<20)
         {    
-            //Make a copy of the original text from the text file
+            //Make a copy of the original message1
             String msg=String.valueOf(message1);
-            //We duplicate the text 3 times
+            CheckLength = true;
+            //We duplicate the text 15 times
             for(int k=0;k<14;k++)
             {
                 message1 += " ";
@@ -445,35 +449,22 @@ public class StreamCipher extends javax.swing.JFrame {
         //Convert the message2 from String to Hex
         message2 = convertStringToHex(message2);
         
-        //Display the message and the Key on the console (in Hex)
-        //System.out.println("message is:" + message2);
-        //System.out.println("Key is:" + Key);
-        
         //Encrypt the message using the key
         BigInteger XOR_result = XOR(message2,Key);
-        //Display the XOR operation on the console
-        //System.out.println(message2 + "^" + Key + "=" + XOR_result);
         
         //Convert the bigInteger to String and assign the value to the text field
         String XOR_result_converted = XOR_result.toString(16); 
-        //System.out.println(XOR_result_converted);
         jTextField3.setText(XOR_result_converted);
-        //System.out.println(message2);
         
         //Display the converted message into hex on the console
         jTextField4.setText(message2);
         
-        //System.out.println(XOR_result_converted.getClass().getName());
-        //System.out.println(toBinary(XOR_result_converted));
         //The encrypted text displayed and generating the cipher-text
         jTextPane1.setText(Hide_Message(message1,toBinary(XOR_result_converted)));
-        //System.out.println(Hide_Message(message1,toBinary(XOR_result_converted)));
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        String CipherText = jTextPane1.getText();
-        //System.out.println(CipherText);
         jLabel2.setText("");
         jLabel2.setText("The Key is: ");
 
@@ -483,56 +474,50 @@ public class StreamCipher extends javax.swing.JFrame {
         //XOR between original message 2 and the key
         BigInteger result = XOR(message2,Key);
         //Convert the bigInteger to String and assign the value to the text field
-        
         //Decrypt the hidden message - and get message2
         String XOR_result_converted = result.toString(16);
         BigInteger decryption_message2 = XOR(XOR_result_converted,Key);
+        
         //Convert message2 (from BigInteger) to Hex
         String message2_decrypted = decryption_message2.toString(16); 
 
         jLabel4.setText("");
         jLabel4.setText("The decrypted message is: ");
-        //System.out.println(message2_decrypted);
         
         jTextField3.setText("");
         //Assign the converted value from hex to String to the text field
         jTextField3.setText(convertHexToString(message2_decrypted));
         
-        //System.out.println(message1);
+        //Clear the label when decryption button is clicked
         jLabel5.setText("");
         jLabel5.setText("Original message after decryption:");
-        
-        jTextPane1.setText(message1);
+        //Set the panel text to message1 after decryption
+        if(CheckLength == false)
+            jTextPane1.setText(message1);
+        else 
+            jTextPane1.setText(removeDuplicates(message1));
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         //Method GUI to generate a key
-        
-        //Initialise p1 and p2 with random prime number
+        //Initialise p1 and p2 with a random prime number
         p1=generateRandomPrime();
         p2=generateRandomPrime();
-        //Firstly, initialise the seed with a random number between 1 and 10
+        //Firstly, initialise the seed with a random number between 1 and 30
         seed=getRandomInRange(1,30);
         while(GCD(seed,p1*p2)!=1)//While the seed and p1*p2 are not co-prime
             seed=getRandomInRange(1,100);//generate a new seed      
-
-        //Display on the screen p1,p2 and seed
-        //System.out.println("Seed=" + seed + " p1=" + p1+" and p2="+p2);
         
         //Create and generate the array which stores the parity determined by Blum Blum Shub Generator
-        int[] randomNums = new int[60];
+        int[] randomNums = new int[72];
         //Call the Blum Blum Shub method and store the result into variable 
-        String variable = blumblum_shub(seed, p1,p2, randomNums, 60);
+        String variable = blumblum_shub(seed, p1,p2, randomNums, 72);
         
-        //System.out.println("The key in binary: " + variable);
+        //Convert the binary key to hex
         Key = binaryToHex(variable);
-        //Key = "a73e80e2b563";
 
-        //System.out.println("The generated key is: " + Key);
         //Set the text of the field to the found Key
         jTextField2.setText(Key);
-        
-        
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
