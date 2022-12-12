@@ -573,7 +573,7 @@ public class BCH_codes_16_12 extends javax.swing.JFrame {
         BCHSyndrome[1] = signedMod((d[0] + 2*d[1] + 3*d[2] + 4*d[3] + 5*d[4] + 6*d[5] + 7*d[6] + 8*d[7] + 9*d[8] + 10*d[9] + 11*d[10] + 12*d[11] + 13*d[12] + 14*d[13] + 15*d[14] + 16*d[15]), 17);
         BCHSyndrome[2] = signedMod((d[0] + 4*d[1] + 9*d[2] + 16*d[3] + 8*d[4] + 2*d[5] + 15*d[6] + 13*d[7] + 13*d[8] + 15*d[9] + 2*d[10] + 8*d[11] + 16*d[12] + 9*d[13] + 4*d[14] + d[15]), 17);
         BCHSyndrome[3] = signedMod((d[0] + 8*d[1] + 10*d[2] + 13*d[3] + 6*d[4] + 12*d[5] + 3*d[6] + 2*d[7] + 15*d[8] + 14*d[9] + 5*d[10] + 11*d[11]+ 4*d[12] + 7*d[13] + 9*d[14] + 16*d[15]), 17);
-        System.out.println("S1,S2,S3,S4 = " + BCHSyndrome[0] + " " + BCHSyndrome[1] + " " + BCHSyndrome[2] + " " + BCHSyndrome[3]);
+        System.out.println("(S1 S2 S3 S4) = " + "(" + BCHSyndrome[0] + " " + BCHSyndrome[1] + " " + BCHSyndrome[2] + " " + BCHSyndrome[3] + ")");
         return BCHSyndrome;
     }
     private int[] getData_Decoding(int []intArray,int size)
@@ -648,7 +648,7 @@ public class BCH_codes_16_12 extends javax.swing.JFrame {
                 jTextPane2.setText("One error present. Corrected code: " + digitNumberString);
             }
             else
-                jTextPane2.setText("More than two errors have occoured. ??");
+                jTextPane2.setText("More than two errors have occoured for this test. ??");
         }
         else
         {
@@ -673,21 +673,14 @@ public class BCH_codes_16_12 extends javax.swing.JFrame {
                 int ok = 1;
                 for(int i = 0; i < inputNumber.length-1; ++i)
                 {       
-                        if(inputNumber[i]!=17)
-                        {
-                            ok=0;
-                            break;
-                        }
-                        else
-                        {
-                            digitNumberString += inputNumber[i];
-                            System.out.println("Digit:" + i + " " +inputNumber[i]);
-                        }
+                    digitNumberString += inputNumber[i];
+                    System.out.println("Digit:" + i + " " +inputNumber[i]);
                 }
-                if(ok==1)
-                    jTextPane2.setText("Two errors present. Corrected Code: " + digitNumberString);
-                else
-                    jTextPane2.setText("More than two errors have occoured. ??");
+                jTextPane2.setText("Two errors present. Corrected Code: " + digitNumberString);
+                //if(ok==1)
+                    //jTextPane2.setText("Two errors present. Corrected Code: " + digitNumberString);
+                //else
+                    //jTextPane2.setText("More than two errors have occoured. ??");
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
